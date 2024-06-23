@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Zero G Arena</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Zero G Arena</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>20m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-10/29/2016">10/29/2016</a> 23:04:36</TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="#quicklink-6/22/2024">6/22/2024</a> 16:57:04</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="#quicklink-6/22/2024">6/22/2024</a> 17:55:51</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Played">Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="#quicklink-11/3/2016">11/3/2016</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="#quicklink-80">80</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="#quicklink-Multiplayer">Multiplayer</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://store.steampowered.com/app/467820" target="_blank">Steam</a><br/><a href="http://zga.io" target="_blank">Official</a><br/><a href="https://www.twitch.tv/directory/game/Zero%20G%20Arena" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<strong><i>Please Note: The player-base of Zero G Arena is currently such that you are unlikely to find other players online by chance. If that is a deal-breaker for you then I cannot suggest you buy the game. Otherwise, Zero G Arena does feature bots, private servers and has an official discord which players can use to arrange matches. See below for a full list of features.</i></strong><br><br>Zero G Arena is an arena shooter with <strong>zero gravity, ragdoll physics, grappling beams and magnet boots</strong>. It's an intense combination!<br><br>The game is designed to work on multiple levels of play:<br><ul class="bb_ul"><li>The novelty of the mechanics and the sheer fun of floating and swinging about the levels provides a fun experience at any level of play.<br></li><li>The outlandish hijinks that are enabled by the ragdoll physics, grapple beams and fast-paced action make the game hilarious fun to play casually with friends (or with friendly strangers on public servers...).<br></li><li>At it's core, Zero G Arena is a balanced, competitive game with an extremely high skill-ceiling. Mastery of the movement mechanics is of more importance than aiming ability. You may also be surprised by it's tactical depth (feel free to ask me on the forums for more about this).</li></ul><h2 class="bb_tag">Gameplay</h2><strong>Movement</strong><br>You can toggle your boot magnets freely to switch between running on magnetic surfaces or floating with zero gravity ragdoll physics. <br><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/467820/extras/Cheeky_Rocket_Killsteal_Captions_-_Steam.jpg?t=1575196661" /><br>You also have a grappling beam, which can be used to pull yourself around and swing about while floating.<br>As well as these technological locomotive methods, you also have a powerful set of core movement abilities:<br><ul class="bb_ul"><li>A set of basic jumps, which can be controlled intuitively using the spacebar and movement keys.<br></li><li>A wall-jump, which can be used while floating to bounce from wall to wall.<br></li><li>A crouch ability, which can be used to do a crouching slide on magnetic surfaces to dodge enemy fire.<br><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/467820/extras/Slide_To_Alter.jpg?t=1575196661" /></li></ul><br><strong>Combat</strong><br>Zero G Arena features a set of 5 futuristic firearms. All players start with the same default weapon and can acquire other weapons from pickups in the map.<br><br>Zero G Arena also features a pickup that can turn your grapple-beam into a weapon that damages other players on intersection.<br><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/467820/extras/Pillar_Weaponized_Grapple_-_Steam_Page.jpg?t=1575196661" /><br><br>Use your speed as a weapon with the melee kick! It's damage scales greatly with your speed relative to the target.<br><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/467820/extras/Tutorial_Kick_-_Steam.jpg?t=1575196661" /><br><br><strong>Game Modes</strong><br>Zero G Arena features the classic Free-For-All, Team-Deathmatch and King-Of-The-Hill game modes, as well as these Zero-G originals:<br><ul class="bb_ul"><li>”Capture-The-Sphere”: Like the familiar Capture-The-Flag game mode, except the “flag” is a large, floating sphere. Players must use their grapple beams to pull the sphere to their goal, while fighting off the other team.<br></li><li>”Spaceball”: A fast, team-based sporty game-mode similar to Soccer/Football. Players don't have any weapons other than a non-lethal “Force Cannon”, which can be used to shoot the ball across the map. </li></ul><h2 class="bb_tag">Features</h2><ul class="bb_ul"><li>Online multiplayer, with either dedicated or listen (player hosted) servers. Find other players on one of the dedicated servers, or host a private game for you and your friends.<br></li><li>Bots which are available for offline play, or on servers while you wait for other players.<br></li><li>No in-game monetary transactions.<br></li><li>A number of cosmetic options for your avatar, which are unlocked through Steam achievements.<br></li><li>Basic support for LAN matches.<br></li><li>Community-made maps (these are made outside of the game using UE4 {which is free to use}).<br></li><li>Original soundtrack.</li></ul>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

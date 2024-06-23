@@ -1,0 +1,314 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Deep in the Void</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Deep in the Void</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="#quicklink-6/22/2024">6/22/2024</a> 16:55:25</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="#quicklink-6/22/2024">6/22/2024</a> 17:42:19</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="#quicklink-9/11/2022">9/11/2022</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Real Time Strategy (RTS)">Real Time Strategy (RTS)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Whackland Studios">Whackland Studios</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://whacklandstudios.itch.io/deep-in-the-void" target="_blank">Itch</a><br/><a href="https://www.twitch.tv/directory/game/Deep%20in%20the%20Void" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p>The Game is still in early development. Many of the planed features are yet to be implemented. Expect Bugs.</p>
+<p><br></p>
+<h3>Alpha Trailer</h3>
+<div><button itchio="" aria-label="Click to activate YouTube embed" type="button" class="embed_preload youtube_preload" data-embed_code="<iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/qYdlcCsYbC8&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;></iframe>" style="width: 250px; height: 140px; background: url(https://i.ytimg.com/vi/qYdlcCsYbC8/hqdefault.jpg) 50% 50% no-repeat; background-size: cover"></button><br></div>
+<h3>Story</h3>
+<p>Deep in the Void plays in a Sci-fi Universe where you, the Player, were part of a Space Expedition with others from your home World. On your way from Platina X-27 to Frek Z-Y your expedition fleet was mysteriously pulled out of your Warp drive, destroying most of the fleet and heavily damaging your ship.<br></p>
+<p>Fortunately for you, during the incident you were doing&nbsp; an Inspection on a mining Vessel. After a couple of hours, you wake up and start to realize your situation. The mining ship's Artificial Intelligence “Cora” has started an emergency procedure and activated an emergency Station.
+</p>
+<p>The Ai gives you control over the mining vessel and gives you first Instructions. She tries to scan the surroundings and tells you to start mining the asteroids close to the Station.
+</p>
+<p>The goal of the Player is to construct infrastructure to help save survivors that are still alive and lost in the void. Defend yourself and your colony from enemies. The end goal of the Game is to construct a Warp Drive Device to rescue you and your people.</p>
+<h3>&nbsp;Beginning</h3>
+<p>The ship of the Player is broken, because of this his ability to move is restricted. The ship also shows vital damage to its hull. The Player is greeted by the Artificial Intelligence.&nbsp; She tells you about the Incident and gives you your first tasks.</p>
+<p><img src="https://img.itch.zone/aW1nLzk5NjAzNjgucG5n/original/UriJAj.png" loading="lazy"></p>
+<h3>Gather Resources</h3>
+<p>He gets the task to start gathering resources, so that he can repair his mining vessel. When the player shoots his Laser at an Asteroid, he will get Ore from “Ore Asteroids” which look darker and Ice from “Ice Asteroids” which look blueish, white.</p>
+<p><img src="https://img.itch.zone/aW1nLzEwMTQ4NTk2LnBuZw==/original/VupUir.png" loading="lazy"></p>
+<h3>Emergency Station</h3>
+<p>The Emergency Station provides a cargo to store all Resources. It is also the Science lab, with which the Player can repair his ship, and start to gather knowledge about different Buildings.</p>
+<p><img src="https://img.itch.zone/aW1nLzEwMTQ4NTk5LnBuZw==/original/aSAUUt.png" loading="lazy"><br></p>
+<h3>Building Interface</h3>
+<p>When the Player traverses through the Science tree and researches the “captain's interface”, he will be able to access the “Build UI”</p>
+<p><img src="https://img.itch.zone/aW1nLzEwMTQ4NjExLnBuZw==/original/%2F%2BrOSy.png" loading="lazy"><br></p>
+<h3>Factories &amp; Furnaces</h3>
+<p>Factories &amp; Furnaces are the Core elements in “Deep in the Void”.</p>
+<p>With these Buildings, it is possible to automate the construction processes and later get more Technologies and Defensive Weaponry.</p>
+<p><img src="https://img.itch.zone/aW1nLzEwMTQ4NjIyLnBuZw==/original/hhPpLo.png" loading="lazy"><br></p>
+<h1>Recipe List</h1>
+<p>With the Recipe List the Player is able to build a verity of different Components to craft more Advanced Mechanisms like other Buildings</p>
+<p><img src="https://img.itch.zone/aW1nLzEwMTQ4NjQ0LnBuZw==/original/lyYQkX.png" loading="lazy"><br></p>
+<h2>Build a Space Colony</h2>
+<p>The Goal of the Game is to expand your Colony and ready your defenses against hordes of Aliens.</p>
+<p><img src="https://img.itch.zone/aW1nLzEwMTQ4NjQ3LnBuZw==/original/tAlhY6.png" loading="lazy"><br></p>
+<h3>Radio wave Pollution</h3>
+<p>Another Core Mechanic is the Radio wave Pollution. Aliens are attracted to the radio wave pollution. Their goal is to destroy you and your Colony, because they hate everything that emits those waves. Radio wave pollution is being emitted when constructing and maintaining buildings</p>
+<p><img src="https://img.itch.zone/aW1nLzk5NjAzOTAucG5n/original/G4tvyn.png" loading="lazy"><br></p>
+<h3>Defending your Colony</h3>
+<p>Once the Radio wave Pollution gets high enough, nearby aliens will form an organized attack against you. The Player needs to make sure that Turrets have been researched and are ready to fend off the Threat. The Mining laser of the Player's Vessel is enough against the earliest waves, but too weak once the attacks get larger.</p>
+<p><img src="https://img.itch.zone/aW1nLzEwMTQ4NjUzLnBuZw==/original/FFSt5n.png" loading="lazy"><br></p>
+<h3>Planed Features</h3>
+<p>The Game is still in early development and many of the planed features are yet to be implemented.</p>
+<p>- More complex and challenging logistics, beyond cargo drones simply delivering everything where it needs to be automatically.</p>
+<p>- Different enemy types and enemy bases which need to be destroyed to make room for expansion. Alien technology can be salvaged from enemy bases.<br></p>
+<p>- Many more buildings and technologies.</p>
+<p>- Population and Crew mechanics. Most buildings will require a crew and they need water to be sustained. You can find survivor pods in space to increase your population.</p>
+<p>- The ability to manufacture and command AI controlled space ships.</p>
+<p>- Energy system. Solar Power, Nuclear Energy and more exotic technologies.<br> <br></p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

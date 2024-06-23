@@ -1,0 +1,315 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>A Vibrant Melody 0.22d</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> A Vibrant Melody 0.22d</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="#quicklink-6/22/2024">6/22/2024</a> 16:56:32</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="#quicklink-6/22/2024">6/22/2024</a> 17:41:06</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="#quicklink-4/26/2019">4/26/2019</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p>A Vibrant Melody is a game about helping plants and animals who are trapped in a magical desert by singing to them. If you lift the spell of tumultuous magic from them, together you can rebuild the ecology of the desert. A Vibrant Melody is an arcadey rogue-lite game that rewards repeated play and subverts existing mechanics to create an aspirational and non-violent experience.</p>
+<p><strong></strong><strong>From the Author<br></strong>Hi thanks for checking out my game. This is an evolving project in the early access phase and I'm sharing with people to get feedback to make it as good as possible. I think it's pretty unique, but I know it's still a bit rough around the edges. So please try it out and let me know what you think.<br><strong>Trev</strong><br>Twitter:&nbsp;<strong><a href="https://twitter.com/Trev_Murray" rel="nofollow noopener" referrerpolicy="origin">@Trev_Murray<br></a></strong>Email: SuspensionOfDisbeliefGames@gmail.com<br>Discord:&nbsp;<a href="https://discord.gg/PB4sPbz" rel="nofollow noopener" referrerpolicy="origin">https://discord.gg/PB4sPbz</a><br></p>
+<p><br></p>
+<p><strong>Try the Tutorial</strong></p>
+<p>It's short&nbsp;and will introduce you to the basic concepts of the game. And put you in a good position to learn the rest by playing. You will quickly unlock more and more creatures, emotions, and challenges as you get better at the game to keep things interesting.</p>
+<p><strong><br>How to play basics</strong><br></p>
+<p>Melody came to the desert to sing to upset creatures. To get home she must open the Flower Portal with the emotions of the creatures she soothes.</p>
+<p>Singing soothes upset creatures and helps hatch Egg Plants.</p>
+<p>Move and sing on the beat&nbsp;with the arrow keys or the face buttons of your controller.&nbsp;</p>
+<p>Soothed creatures release Emotions, which you can feed to the Flower Portal to find your way home.</p>
+<p>Each creature is unique both when sad and when happy. Experiment to find out how they can help you.</p>
+<p>The game can be a little overwhelming at first, so&nbsp; just focus on your goal and I'm sure you'll escape in no time!</p>
+<p>Good luck, and have fun. Read the guide and patch notes for more help.</p>
+<p><a href="https://docs.google.com/document/d/1Z2xnG-UNfTxf3pbA_ghSc9ATwJAUeyMHRuUVKRHzmtE/edit?usp=sharing" target="_blank" rel="nofollow noopener" referrerpolicy="origin">How to play guide</a></p>
+<p><strong>Note:</strong> If you've played the game before and are trying a new version, please delete your save file using the in game menus. Old saves are not compatible with the new tutorial system.<br><br></p>
+<p><strong>Hotfix 02/04/2020<br></strong></p>
+<ul><li>Replaced the third tutorial level with a more intuitive and clearer layout. I hope this helps the people that were getting overwhelmed and stuck.</li><li>For those still having trouble with tutorials trying pausing and pressing "?" for 'help'.</li></ul>
+<p><strong>Hotfix 01/04/2020</strong><span></span><br></p>
+<ul><li>Added floaty text to some events in the game. Such as soothing a creature, hatching an egg, or upsetting a creature.</li><li>Emotion moving animations are now slightly slower, and hopefully easier to see what is happening.</li><li>Egg Plants again update their total emotions if they eat emotions as they hatch.</li><li>Corrected the ordering of the level medals. (vacation and tumbler switched)</li><li>Corrected the wrong voice line having a chance to play in the early matches.</li></ul>
+<p><br><strong><strong>About this update</strong></strong></p>
+<p><strong></strong><strong><a href="https://docs.google.com/document/d/1Me9jW7Zi3jrFjgvUGGMgjuxNQSc2UEcGywDUvmW8LwI/edit?usp=sharing" target="_blank" rel="nofollow noopener" referrerpolicy="origin">Patch notes 0.22d</a><strong>&nbsp;31/03/2020</strong></strong></p>
+<p><strong>Clarity, synchronicity and progress</strong></p>
+<p>Thanks so much to all the new players who’ve picked up my game as part of the GDC relief bundle, I’m looking forward to hearing what you think about this quirky game!</p>
+<p>Continuing the trend of recent patches, I’ve further improved A Vibrant Melody’s clarity and accessibility. You can now see creatures and emotions when they are hidden behind rocks (and unusually large hats). And the title screen lets you know which difficulty level you’ve currently unlocked with a colourful medal. I’ve also improved a lot of the games text, especially in the compendium.</p>
+<p>There have just been a whole lot of little things that have come together to help the game feel a bit better to play. One nice change I think everyone will like even if it’s not obvious, is that when creatures change their emotional state, they no longer switch what they were doing. They will keep track of the sequence they are in, and switch over to the higher or lower difficulty version of it that matches their new emotional state. This is the first of what will be several changes to trying to improve the synchronisation between different creatures.</p>
+<p>Thanks everyone so much for trying out my little game. Please be sure to let me know what you think either on the Itch site, on twitter @Trev_Murray or by email <a href="mailto:SuspenionOfDisbeliefGames@gmail.com" rel="nofollow noopener" referrerpolicy="origin">SuspenionOfDisbeliefGames@gmail.com</a></p>
+<p>Hope you’re having a wonderful day, despite everything going on at the moment,</p>
+<p>Cheers,</p>
+<p>Trev</p>
+<p><span></span><br></p>
+<p><span></span></p>
+<p><strong>Last update</strong></p>
+<p><strong>Hotfix 10/03/2020<br></strong>Troublesome mushrooms are now prevented form&nbsp;appearing and ruining your match or tutorial.<br></p>
+<p><strong><a href="https://docs.google.com/document/d/1rNebmI7mNlmEkS88mxymjbmU1RcPpIyFTmmonMuxcvE/edit?usp=sharing" target="_blank" rel="nofollow noopener" referrerpolicy="origin">Patch Notes 0.22c</a>, 07/03/2020</strong><br></p>
+<p><strong>Massive Early-Game Overhaul</strong></p>
+<p>Thanks so much for the fantastic feedback everyone!</p>
+<p>I’ve made a tonne of changes based on this that I think will make AVM so much easier to learn and to play. I’ve spread out many features so they are gradually unlocked over time, which will hopefully help stop people being as overwhelmed. This includes Sad and Angry creatures, Finale Eggs Plants, along with the bigger map, and the Crescendo Tumbler. To support all these new unlocks I’ve completely overhauled the Compendium, so that it can tell you about these unlocks as they appear. The Compendium now has art of each creature in each Emotional State, and has a page of Egg Plants, and Finale Eggs.</p>
+<p>I’ve overhauled a lot of the art in the game to make it more intuitive to learn by playing. I’ve completely redone the Agave and Pebble People art. The Agave now cries out big tear droplets, and Pebble People kick up a bunch of dirt. I’ve also redesigned the Emotional health bars and the Hatching Timers. They should be a lot clearer, more intuitive, and more accurate than the old ones. All creatures now have a coloured outline which indicates their current Emotional State, green for Happy, red for Upset. And I’ve added shadows and animations to a lot of the existing special effects.</p>
+<p>Along with all this there have been a bunch of tweaks to the game rules, mostly focused around clarity, intuitiveness, and just feeling better to play and interact with. Melody can now instantly hatch any Egg Plant using a 4 song power Flourishing Light. Melody can switch places with Pebble people and plantable Creatures instead of getting stuck on them. When Melody opens a pinata the emotions now only fly onto empty diagonally adjacent tiles. And Leap Frogs now only sing to directly adjacent tiles.</p>
+<p>A huge amount of work has gone into this patch, in what has been a very busy time. So thanks so much for playing the game and providing feedback and I hope you enjoy what I’ve done.</p>
+<p>Please read the detailed patch notes below if you’d like more detail, and all the older patch notes are available on the game page if you’d like to see what else I’ve added recently.</p>
+<p>Have fun!</p>
+<p>Trev</p>
+<p>@Trev_Murray on twitter</p>
+<p><br></p>
+<p><strong>Hot Fix 10/02/2020</strong>&nbsp;</p>
+<p>Based on your feedback I’ve tweaked the first few matches to make the game even more accessible to new players. These will hopefully help with learning the game especially as you are starting out. Please let me know what you think. Please delete your previous saves to ensure there isn’t any funny business when playing this new patch.</p>
+<ul><li>I've added a very simplified starting match which has reduced size and features the small egg, the agave, and the pebble people.</li><li>The 2nd match also takes place on this small map and adds the Leap Frog and the Chord Egg</li><li>The 3rd match moves to the bigger map and adds the Bramblers and the Cadenza Egg.&nbsp;</li><li>The first four matches also have some bonus starting time, to give a bit of extra freedom to learn how things work.</li><li>Adjusted the compendium to reflect these changes.</li><li>Added Unlock splash screens to inform you as you unlock the new features.</li></ul>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,296 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Kunoi</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Kunoi</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="#quicklink-6/22/2024">6/22/2024</a> 16:56:22</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="#quicklink-6/22/2024">6/22/2024</a> 17:49:50</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="#quicklink-11/4/2015">11/4/2015</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Arcade">Arcade</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Platform">Platform</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-7osix">7osix</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-7osix">7osix</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://7osix.itch.io/kunoi" target="_blank">Official</a><br/><a href="https://7osix.itch.io/kunoi" target="_blank">Itch</a><br/><a href="https://www.twitch.tv/directory/game/Kunoi" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p><br></p>
+<hr>
+<p><strong>// NEWS:</strong><br></p>
+<p><strong>12//02//2020 -</strong>&nbsp;<strong>7OSIX HAS A PATREON/ NEW GAME IN DEV!</strong></p>
+<p>Hey everyone! I hope you have been surviving 2020, (sure has been a rough one!)&nbsp;<br>Thank you so much for stopping by the Kunoi page and hopefully playing! I have been working on a brand new game called <strong>DASHER T!&nbsp;</strong>A very fast, very dashy game with some Hollow Knight influence, among others. After giving Kunoi a try, head over to the 7osix Patreon! It starts out at just one dollar!&nbsp; A lot of the perks for little the money! Please spread the word!</p>
+<p><a href="https://www.patreon.com/7osix" referrerpolicy="origin" rel="nofollow noopener">https://www.patreon.com/7osix</a></p>
+<p><a href="https://www.patreon.com/7osix" target="_blank" referrerpolicy="origin" rel="nofollow noopener"><img src="https://img.itch.zone/aW1nLzQ3MTc0OTUucG5n/original/b0KKtg.png" alt="7osix Patreon" title="7osix Patreon" loading="lazy"></a></p>
+<figcaption>Support the cause!</figcaption>
+<p></p>
+<p><br></p>
+<p>And as always, thank you so much everyone!<br>- Jay 7osix&nbsp;</p>
+<p><strong><br>11//24//2015 - KUNOI RELEASE:<br></strong></p>
+<p><span>Kunoi has finally been released! November 24th 2015!<br></span>Now you can face off against Omoyami and his clan,<br>collect all the Enda swords, and rescue Master Yuka!</p>
+<p><span style="background-color: initial">You can have the full game now for only $2.99 </span><strong><span>! </span></strong></p>
+<p><strong><span><br></span></strong></p>
+<p><strong></strong><span></span><span></span><strong>11//21//2015 - OST AVAILABLE:</strong><br>Kunoi's OST has been released! For some catchy tunes go <a href="http://7osix.itch.io/kunoi-ost">HERE</a> to purchase a copy today! This will include all the music from the game, remixes, and unused tracks! 13 tracks for only <strong>$4.99!</strong> <br>Go download your copy today!<br><br><strong><a href="http://7osix.itch.io/kunoi-ost">Kunoi OST</a></strong><br><br></p>
+<hr>
+<p>Please send all comments/inquires/bugs to 7osix.official@gmail.com<br><br>Follow me on Twitter: <a href="https://twitter.com/7OSIX" target="_blank" referrerpolicy="origin" rel="nofollow noopener">@7osix<br></a>Follow Kunoi on Facebook: <a href="https://www.facebook.com/KUNOIgame" target="_blank" referrerpolicy="origin" rel="nofollow noopener">www.facebook.com/kunoigame<br></a>Follow Kunoi on IndieDB: <a href="http://www.indiedb.com/games/kunoi" target="_blank" referrerpolicy="origin" rel="nofollow noopener">www.indiedb.com/games/kunoi</a><a href="http://www.indiedb.com/games/kunoi" referrerpolicy="origin" rel="nofollow noopener"></a><br></p>
+<p><br></p>
+<hr>
+<p><strong>// What to expect:</strong></p>
+<ul><li>Challenging game play at its best. Brutal concoctions of environmental hazards, platforming, and lethal enemies force the player to stay attentive, quick, and adapt. </li><li>Carefully thought out level design. The player's experience is crafted by strategically placed dangers, risks, and rewards. </li><li>Beautiful retro pixel art paying homage to the early 90's such as Sonic, Mario, and Kirby.</li><li> A very expressive soundtrack which also pays tribute to the early 90's. Infectious melodic hooks and driving beats wrapped up in a 16-bit package. </li><li> 20+ levels to blaze through. Seasoned players who are skilled can speed through levels at record time. </li><li>Quick sessions and instantaneous respawn leaves no time for the player's skill to depreciate. There is enough punishment for the player to endure, why sit through a drawn out dying sequence.</li><li><strong>Automatic Saving</strong> so none of your progress will be lost. </li></ul>
+<hr>
+<p><span></span><br></p>
+<p><strong>// Press:<br><br></strong><em>"Kunoi is a game that brings back floods of memories from my childhood; the aesthetics, the soundtrack and the game play all remind me of being that seven year old kid sitting in his dining room on the NES, running through Super Mario Bros. and immersing myself in its charm. I've played the demo and it feels and looks very much like those old Nintendo games; the screenshots of the game are looking like they are taken straight from the golden age of gaming and I for one am looking forward to the finished project."</em><br></p>
+<p><a href="http://wethenerdy.com/kunoi-kickstarter-interview/" target="_blank" referrerpolicy="origin" rel="nofollow noopener"><strong>- CHRIS WHITE - WETHENERDY.COM</strong></a><br><br><em>"Endless running games are quite the "thing" in the mobile world. For the most part, they have not really taken off on computers, where the first person shooter (FPS) is king. Kunoi isn't looking to attempt to change that, though there are some running game elements here they are not front and center. No, front and center is the graphics and sounds that scream early 90's Sega Genesis. Kunoi doesn't skimp on the action and challenge, you won't be "one lifting" this one."</em><br></p>
+<p><em><a href="http://www.gamekicker.com/gaming-news/kunoi-mixes-running-games-with-retrogaming-classic-elements-slashing-through-kickstarter" target="_blank" referrerpolicy="origin" rel="nofollow noopener"><strong>- </strong></a></em><strong><a href="http://www.gamekicker.com/gaming-news/kunoi-mixes-running-games-with-retrogaming-classic-elements-slashing-through-kickstarter" target="_blank" referrerpolicy="origin" rel="nofollow noopener">CARL WILLIAMS - GAMEKICKER.COM<br><br></a></strong></p>
+<hr>
+<p><br></p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

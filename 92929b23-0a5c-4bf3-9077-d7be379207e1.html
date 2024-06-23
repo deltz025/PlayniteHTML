@@ -1,0 +1,313 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Captain Disaster in: Death Has A Million Stomping Boots</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Captain Disaster in: Death Has A Million Stomping Boots</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="#quicklink-6/22/2024">6/22/2024</a> 16:56:51</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="#quicklink-6/22/2024">6/22/2024</a> 17:53:53</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="#quicklink-12/29/2017">12/29/2017</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Point-and-click">Point-and-click</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-CaptainD">CaptainD</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-CaptainD">CaptainD</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://captaind.itch.io/captain-disaster-in-death-has-a-million-stomping-boots" target="_blank">Official</a><br/><a href="https://captaind.itch.io/captain-disaster-in-death-has-a-million-stomping-boots" target="_blank">Itch</a><br/><a href="https://store.steampowered.com/app/1298280/Captain_Disaster_in_Death_Has_A_Million_Stomping_Boots/" target="_blank">Steam</a><br/><a href="https://www.twitch.tv/directory/game/Captain%20Disaster%20in%3A%20Death%20Has%20A%20Million%20Stomping%20Boots" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h1 class="text-justify">Now comes with Steam key!</h1>
+<h5 class="text-justify"></h5>
+<h5 class="text-justify">Captain Disaster takes a job delivering a package from Acturus-1 to Proboscis Major - not realising that he is actually transporting something that will put the entire galaxy in danger! &nbsp;Though just getting the package in the first place is quite a challenge in itself...</h5>
+<h5 class="text-justify">Our intrepid nitwit investigates interesting peculiar people, puzzling places and panicky problems along the way to saving the day, once he finally realises that something is wrong. &nbsp;Expect lots of laughs and head-scratching dilemmas before you reach the shocking conclusion and find out what all this "Million Stomping Boots" business is actually about!</h5>
+<h3 class="text-center">Free demo with around 45-60 minutes of gameplay available for those who want to try before they buy.</h3>
+<h3 class="text-center"><img src="https://img.itch.zone/aW1nLzEzMTg1MDQucG5n/original/79lGSt.png" loading="lazy"></h3>
+<h3 class="text-justify">Game Details:</h3>
+<h1></h1>
+<ul class="text-justify"><li class="text-justify">Classic point-and-click adventure gaming action with a few new twists</li><li class="text-justify">Retro 320x200 resolution&nbsp;graphics</li><li class="text-justify">Fully voiced&nbsp;</li><li class="text-justify">Epic music score&nbsp;</li><li class="text-justify">Plenty of puzzles&nbsp;</li><li class="text-justify">Plenty of adventure</li><li class="text-justify">Plenty of comedy</li></ul>
+<p class="text-justify">This game has been a labour of love by 2 devs (CaptainD and TheBitPriest) - who should know better, but just can't help loving the genre - with help from multiple other people over time.&nbsp; &nbsp;We were inspired by the classic adventure games produced by Lucasfilm Games and Sierra, and believe we have created something that will hopefully, like those games, stand the test of time.</p>
+<p><br></p>
+<h1 class="text-justify">Reviews:</h1>
+<p class="text-justify"><em>"</em>As a light-hearted comedy adventure with a few head-scratching puzzles, any fans of Space Quest or Zac McKracken will find plenty here to enjoy." (<strong><a href="http://thereticule.com/space-quest-too-captain-disaster-in-death-has-an-extremely-long-title/" target="_blank" referrerpolicy="origin" rel="nofollow noopener">The Reticule</a></strong>)</p>
+<p>"It’s everything a point and click game should be and more!" (<a href="https://xgeeks.co.uk/2018/10/04/captain-disaster-in-death-has-a-million-stomping-boots-review/" target="_blank" referrerpolicy="origin" rel="nofollow noopener"><strong>X-Geeks</strong></a>)<br></p>
+<p>"What I loved most about this game is that it is well-written with a delightful sense of comic humor...&nbsp;To summarize, CaptainD and TheBitPriest have done an admirable job of creating a game that is delightful to play.&nbsp;" (<strong><a href="http://justadventure.com/2013-05-20-21-09-14/4140-captain-disaster-death-has-a-million-stomping-boots" target="_blank" referrerpolicy="origin" rel="nofollow noopener"><strong>Just Adventure</strong></a><strong>)</strong></strong></p>
+<p>"Captain Disaster&nbsp;turned out to be an incredibly in-depth adventure with a world more vivid than we imagined from first impressions. " (<a href="http://bigbossbattle.com/captain-disaster-review/" target="_blank" style="text-align: justify" referrerpolicy="origin" rel="nofollow noopener"><strong>BigBossBattle</strong></a>)<br></p>
+<p class="text-justify">"an absolutely bonkers, dangerous, grand adventure!" (<a href="http://www.wraithkal.com/captain-disaster-in-death-has-a-million-stomping-boots-review/" target="_blank" referrerpolicy="origin" rel="nofollow noopener"><strong>Wraithkal</strong></a>)</p>
+<p>"if&nbsp; you are in the mood for a good old school point and click this is a hard game to pass up."&nbsp; (<a href="https://neoretrogo.wordpress.com/2018/01/16/captain-disaster-death-million-stomping-boots-review/" target="_blank" referrerpolicy="origin" rel="nofollow noopener">NeoRetroGo</a><strong></strong>)<br></p>
+<p>"a throwback point and click adventure with a nice, comical, story" (<strong><a href="http://thelootgaming.com/captain-disaster-in-death-has-a-million-stomping-boots-review/" target="_blank" referrerpolicy="origin" rel="nofollow noopener">The Loot Gaming</a></strong>)<br></p>
+<p><strong><u><br></u></strong></p>
+<h1>What players have said:</h1>
+<p class="text-justify">"An hilarious and fun to play spacefaring adventure, full of clever ideas and puzzles of all sorts"&nbsp;&nbsp;</p>
+<p class="text-justify">"A fun successor to games like Space Quest with references and jokes aplenty and a lighthearted atmosphere that doesn't take itself seriously in the slightest. Had a lot of fun figuring out the puzzles and meeting all the bizarre characters."&nbsp;<span></span></p>
+<p class="text-justify">"If you have a fondness for planet-hopping sci-fi TV shows and movies of yesteryear, and you also like the idea of guiding a bumbling buffoon through a comedy of errors in deep space, give this game a try."&nbsp;<br></p>
+<p class="text-justify">"A great game polished to a brilliant sheen over many years of development.<br>Instant adventure game classic!"&nbsp;<br></p>
+<p class="text-justify">"excellent story with engaging &amp; challenging game play with a lot of subtle social comment &amp; brought to life with humorous voice-acting .....What more can I say!"&nbsp;</p>
+<p class="text-justify">"I found it to be a delightful &amp; engaging game brought to life with an interesting story, humour that I could immediately identify with &amp; pretty good voice acting!"</p>
+<p class="text-justify">"A spoof of the space opera genre that actually manages to be THE best space opera I've seen in years. It's quite simply FUN! It's got a memorable cast of aliens, robots and AI's. It's got an epic finale. "</p>
+<p class="text-justify">"The jokes, and Captain Disaster himself were really fun to play. "</p>
+<p class="text-justify">"It's a very fun game with a great combination of story and mixture of some tributes to movies and games!"</p>
+<p>"It's Captain Disaster, a zany, outlandish comedy game that never fails to amuse. Gameplay is not too difficult/frustrating, and voice acting I thought was top rate. As a commercial game, I feel like it is a complete package, I only wish it were longer."</p>
+<h1>Gameplay Footage</h1>
+<h3>(Have tried to avoid any spoilers!!)</h3>
+<p><button itchio="" aria-label="Click to activate YouTube embed" type="button" class="embed_preload youtube_preload" data-embed_code="<iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/UBSEP1sSDVg&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot; style=&quot;color: inherit&quot;></iframe>" style="width: 250px; height: 140px; background: url(https://i.ytimg.com/vi/UBSEP1sSDVg/hqdefault.jpg) 50% 50% no-repeat; background-size: cover"></button><br></p>
+<p><button itchio="" aria-label="Click to activate YouTube embed" type="button" class="embed_preload youtube_preload" data-embed_code="<iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/w_L7J7n6dos&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot; style=&quot;color: inherit&quot;></iframe>" style="width: 250px; height: 140px; background: url(https://i.ytimg.com/vi/w_L7J7n6dos/hqdefault.jpg) 50% 50% no-repeat; background-size: cover"></button><br></p>
+<button itchio="" aria-label="Click to activate YouTube embed" type="button" class="embed_preload youtube_preload" data-embed_code="<iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/pwisGIH9Wn4&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;></iframe>" style="width: 250px; height: 140px; background: url(https://i.ytimg.com/vi/pwisGIH9Wn4/hqdefault.jpg) 50% 50% no-repeat; background-size: cover"></button>
+<p><br></p>
+<h3>Might want to avoid this one if strobe lighting causes you difficulties.</h3>
+<h1><button itchio="" aria-label="Click to activate YouTube embed" type="button" class="embed_preload youtube_preload" data-embed_code="<iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/FVusGhTb1NQ&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot; style=&quot;color: inherit; font-size: 14px&quot;></iframe>" style="width: 250px; height: 140px; background: url(https://i.ytimg.com/vi/FVusGhTb1NQ/hqdefault.jpg) 50% 50% no-repeat; background-size: cover"></button></h1>
+<p><br></p>
+<h1>Video Reviews:</h1>
+<p></p>
+<div><button itchio="" aria-label="Click to activate YouTube embed" type="button" class="embed_preload youtube_preload" data-embed_code="<iframe width=&quot;500&quot; height=&quot;281&quot; src=&quot;//www.youtube.com/embed/gaFiD_GWu90&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;></iframe>" style="width: 250px; height: 140px; background: url(https://i.ytimg.com/vi/gaFiD_GWu90/hqdefault.jpg) 50% 50% no-repeat; background-size: cover"></button></div>
+<div><button itchio="" aria-label="Click to activate YouTube embed" type="button" class="embed_preload youtube_preload" data-embed_code="<iframe width=&quot;500&quot; height=&quot;281&quot; src=&quot;//www.youtube.com/embed/LGsX1YM77hI&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;></iframe>" style="width: 250px; height: 140px; background: url(https://i.ytimg.com/vi/LGsX1YM77hI/hqdefault.jpg) 50% 50% no-repeat; background-size: cover"></button></div>
+<div><button itchio="" aria-label="Click to activate YouTube embed" type="button" class="embed_preload youtube_preload" data-embed_code="<iframe width=&quot;500&quot; height=&quot;281&quot; src=&quot;//www.youtube.com/embed/SKVWSCfjYDY&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;></iframe>" style="width: 250px; height: 140px; background: url(https://i.ytimg.com/vi/SKVWSCfjYDY/hqdefault.jpg) 50% 50% no-repeat; background-size: cover"></button></div>
+<p></p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

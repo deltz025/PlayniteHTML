@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>AIRHEART</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> AIRHEART</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="#quicklink-6/22/2024">6/22/2024</a> 16:57:04</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="#quicklink-6/22/2024">6/22/2024</a> 17:33:14</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="#quicklink-7/23/2018">7/23/2018</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="#quicklink-70">70</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="#quicklink-74">74</a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Arcade">Arcade</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Shooter">Shooter</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Simulator">Simulator</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Blindflug Studios">Blindflug Studios</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Blindflug Studios">Blindflug Studios</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="http://airheartgame.com/" target="_blank">Official</a><br/><a href="https://www.facebook.com/airheartgame" target="_blank">Facebook</a><br/><a href="https://twitter.com/airheartgame" target="_blank">Twitter</a><br/><a href="https://store.steampowered.com/app/531180/AIRHEART__Tales_of_broken_Wings" target="_blank">Steam</a><br/><a href="https://www.twitch.tv/directory/game/Airheart:%20Tales%20of%20Broken%20Wings" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					Airheart is a dieselpunk airplane action rogue like game, where every colorful level is built on top of the previous one, all the way up to the stratosphere.<br><br>Welcome to Granaria, a flying city in the clouds. Meet Amelia - a young pilot and fisherwoman wishing to reach the abundant worlds edge. Sky fishing became a really dangerous job, with pirates roaming around everywhere. So start your engines, arm your airplane and get ready to make the catch of a lifetime!<br><br>Airheart combines free roaming, twin stick gameplay with a beautiful, colorful world. Defeat your enemies, salvage their scrap and reuse it to craft new parts for your airplane. Build and try out over 40 weapons and airplane parts. Combine their abilities to become the pirates worst nightmare. Or just have some fun with your enemies and use your harpoon to disarm, unshield, swing them around or drag them back home to disassemble them.<br><br>An airplane game, reimagined in a wonderful world, Airheart is a treat to fans and newcomers to flight action games alike.<br><br><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/531180/extras/t_features.jpg?t=1707225247" /><br><br><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/531180/extras/ut_flying.jpg?t=1707225247" /><br>Assemble your airplane and take off on your quest of rising through all the sky layers above the city of Granaria. With every level built on top of the previous one, it’s a huge 3D space to explore and fight in.<br><br><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/531180/extras/ut_shooting.jpg?t=1707225247" /><br>Arm your plane with machine guns, sniper rifles or lasers and fight off dozens of different enemies. With over fourty weapons and plane parts to craft and discover, there is a ton of explosive combinations. <br><br><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/531180/extras/ut_fishing.jpg?t=1707225247" /><br>Catch flying fish and sell their precious oil to buy a new equipment. Be careful, some of them will try to hunt... YOU!<br><br><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/531180/extras/ut_harpooning.jpg?t=1707225247" /><br>Use your harpoon to reel in and bring home giant fish, disassemble your enemies, fling them into rocks or even steal your foes weaponry!<br><br><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/531180/extras/ut_skylayers.jpg?t=1707225247" /><br>Find launch bases to advance to ever higher sky layers and explore the changing seasons on the way to the stratosphere! But be thorough to find all their secrets and collect tons of loot!<br><br><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/531180/extras/ut_boss.jpg?t=1707225247" /><br>Get ready to fight powerful bosses like a zeppelin or a mechanical snake, that will try to hinder your advance to the highest regions. Being a fisherwoman in the sky is not a piece of cake.<br><br><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/531180/extras/ut_workshop.jpg?t=1707225247" /><br>Collect junk of defeated enemy airplanes and tinker on new inventions in your workshop. Craft all new parts and weapons for your airplane, the results might surprise you...<br><br><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/531180/extras/ut_graphics.jpg?t=1707225247" /><br>You know those hypnotizingly beautiful flowers, that hunt bugs? Well, that’s a great metaphor for the colorful world of Airheart. Chosen as one of Game Art Challenge winners from the Game Developers Conference 2018, Airheart will enchant you with its unique art style.<br><br><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/531180/extras/ut_music.jpg?t=1707225247" /><br>A custom made soundtrack promises to keep you energized and ready for the adventure!<br><br><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/531180/extras/ut_gameplay.jpg?t=1707225247" /><br>Challenging enemies, interesting combination of guns and harpoon, hunting rare fish between sky islands - it’s tons of fun!<br><br><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/531180/extras/ut_background.jpg?t=1707225247" /><br>The skylayers will change with new species entering the ecosystem as you play. Inspired by how real habitats change due to overfishing in the real world.
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

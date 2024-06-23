@@ -1,0 +1,311 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Omaku</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Omaku</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="#quicklink-6/22/2024">6/22/2024</a> 16:55:26</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="#quicklink-6/22/2024">6/22/2024</a> 17:38:41</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="#quicklink-3/15/2022">3/15/2022</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://ambientmelancholy.itch.io/omaku" target="_blank">Itch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p class="text-center"><br></p>
+<p class="text-center"><img src="https://ambientmelancholy.files.wordpress.com/2021/04/giphy-3.gif?strip=info&amp;w=480" loading="lazy"><br></p>
+<p><br></p>
+<h1 class="text-center">-introduction-</h1>
+<p>Omaku is a top down action adventure game, where you explore a huge interconnected world, without any hints or hand holding. Everything is cryptic and the game is quite challenging, so prepare to feel lost and frustrated. But if&nbsp; you persevere, you may find something beautiful in it.</p>
+<p><br></p>
+<p><br></p>
+<h1 class="text-center">-combat-</h1>
+<p>You only have one button for attacking and interacting besides directional movement. You can attack while moving by keeping the button pressed or attack standing still by tapping the button. You can also use the environment to your advantage, by cutting down trees that fall on enemies,&nbsp; launching bushes and more.&nbsp;While the combat looks simple, right spacing and quick rotation is required. Don't let the cute appearance of the game fool you, it is quite challenging.</p>
+<p class="text-center"><br></p>
+<p class="text-center"><img src="https://media.giphy.com/media/YPUlgIlzqlV1zTD2K0/giphy.gif" loading="lazy"><br></p>
+<p class="text-center"><br></p>
+<h1 class="text-center">-upgrades and collectables-</h1>
+<p>There are two types of resources in the game : "moontears", that are scattered around the world which are required to unlock doors, and "enemies souls" (*cough cough* Dark Souls ripoff)&nbsp;which can be used on sanctuaries for upgrading your sword size, movement speed or health. Also there are some secret smithing stations in the world, which can give you more abilities.</p>
+<p class="text-center"><br></p>
+<p class="text-center"><img src="https://ambientmelancholy.files.wordpress.com/2021/04/giphy-8.gif?strip=info&amp;w=480" loading="lazy"><br></p>
+<p><br></p>
+<h1 class="text-center">-campfires-</h1>
+<p>Campfires are the "checkpoint" of the world where you&nbsp;can restore your health by resting on them,&nbsp; but the enemies also respawn&nbsp; (*cough cough* Dark Souls ripoff again).&nbsp; When you die you respawn on the latest campfire rested or passed closed by and&nbsp;you loose half of your "souls" ( I made this game before Sekiro came out so take that FromSoftware! That was original!),&nbsp; but you can go and get them back by killing your "echo" at the point of your death.</p>
+<p><br></p>
+<p><br></p>
+<h1 class="text-center">-story-</h1>
+<p>One of the two great lights of the sky, the "sun" is gone. Now everyone is lost without her guidance and the world is filled with sorrow. But some lights, while quite dim and small,&nbsp; can radiate hope again.&nbsp;The game is quite cryptic. So you have to gather pieces of information and figure out what happened by yourself.</p>
+<p class="text-center"><img src="https://ambientmelancholy.files.wordpress.com/2021/04/giphy-7.gif?strip=info&amp;w=480" loading="lazy"><br></p>
+<p><br></p>
+<h1 class="text-center">-state of the game-</h1>
+<p>Be warned that this game is not finished and you will not find a climatic ending in it. Still the game is pretty large and it can offer up to 3-4 hours of gameplay. Feeling up the "Lost Souls" compendium and finding all the "moontears" could take many more. I made this game 4 years ago and worked on it for more than a year. I can't promise you that it will be finished but I would love to find out if people would be interested in it.&nbsp;</p>
+<p><br></p>
+<h2 class="text-center">-controls-</h2>
+<p class="text-center"></p>
+<p class="text-center">Move Around with WASD or Keys</p>
+<p class="text-center">Attack/Interact with SPACE or LMB</p>
+<p class="text-center"><br></p>
+<p class="text-center">&nbsp;- press B on keyboard or Select on controller to open Compendium&nbsp;-</p>
+<p class="text-center"><br></p>
+<p class="text-center"><strong>A controller offers the best experience but mouse and keyboard are fine.</strong><br></p>
+<p><br></p>
+<p><br></p>
+<p><strong>Personal Note :&nbsp;</strong></p>
+<p>I started making this game I believe back in 2018-2019. I worked on it for one and a half year, but as I usually do I&nbsp;got tired of it and let it get dust on the shelves of my hard drive. All these years making games I don't care about selling them or trying to do all the marketing stuff, I&nbsp;just enjoy designing games.&nbsp;&nbsp;But as the years passed and&nbsp; got detached from this project, as I&nbsp;revisited it I felt like&nbsp; it deserves to be out there as a real game, even if I see many flaws in it or even if it is unfinished. I will not promote it or anything, I will just upload it here and let it die in public. But even if one person finds it and get's something out of it, that's more than enough ^^ Also why I decided to put a cost on it? I am not sure... Until now all my projects are free, I have very high standard of what a game should be.&nbsp;I do not expect to get any money from it, I just feel like this game even in it's current state, offers many hours of gameplay and must have taken more than a thousand hours to make it. So I think it deserves even a small price, doesn't it?&nbsp;^^</p>
+<p><br></p>
+<p>Everything in this game was made by me except the music and sfx which are bought assets from the store or cc0 music from sites such as freesound and opengameart. I am pretty sure I used only copyrighted materials but if a non copyrighted sfx or music slipped in the game, let me know and I will remove it immediately. Managing a library of music and sound effects can be a nightmare. Thank you so much to everyone who is creating music and sfx for creators. You are a life saver &lt;3</p>
+<p><br></p>
+<p class="text-center"><img src="https://ambientmelancholy.files.wordpress.com/2021/04/cropped-cropped-amlogowhitetrans.png" loading="lazy"><br></p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

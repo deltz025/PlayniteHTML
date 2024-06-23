@@ -1,0 +1,319 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Legend of Moros</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Legend of Moros</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="#quicklink-6/22/2024">6/22/2024</a> 16:56:43</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="#quicklink-6/22/2024">6/22/2024</a> 17:45:09</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="#quicklink-5/21/2015">5/21/2015</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Role-playing (RPG)">Role-playing (RPG)</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-CannibalInteractive">CannibalInteractive</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-CannibalInteractive">CannibalInteractive</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://store.steampowered.com/app/449770" target="_blank">Steam</a><br/><a href="https://cannibalinteractive.itch.io/legendofmoros" target="_blank">Itch</a><br/><a href="https://www.twitch.tv/directory/game/Legend%20of%20Moros" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p><br></p>
+<button itchio="" aria-label="Click to activate YouTube embed" type="button" class="embed_preload youtube_preload" data-embed_code="<iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/tk2N6pvtHWU&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;></iframe>" style="width: 250px; height: 140px; background: url(https://i.ytimg.com/vi/tk2N6pvtHWU/hqdefault.jpg) 50% 50% no-repeat; background-size: cover"></button>
+<p>
+	Legend of Moros is a retro-style RPG. While the combat is turn-based, there are a large number of differences that set this RPG apart from the rest. There are plenty of sidequests, a crafting system that uses parts from monsters, and an unusual twist on the standard combat formula.<br>
+</p>
+<p>
+	Main Features:
+</p>
+<ul>
+	<li>Characters: There are over 12 characters that will join you on your journey. The main character does not have to be in the active party, which results in 1000+ potential party combinations!</li>
+	<li>Storyline: A carefully written storyline that is equal parts dramatic and humorous. NPC's and sidequests help to increase the player's understanding of the world outside of the main quest.</li>
+	<li>Original Assets: Custom animations, tilesets, music, and monsters help to set a unique tone and aesthetic for the world.</li>
+	<li>Gameplay: A tactical combat system that rewards proper execution of both individual character tactics and the overall team strategy. Select one of three difficulty settings to choose from for this 30-40 hour adventure.</li>
+	<li>Diversity: There is a wide variety of genders, skin tones, and disabilities that are represented in this game.</li>
+</ul>
+<p>
+	 Sidequest driven: Apart from the main story, NPC's or objects may start a potential sidequest. The player is free to choose whether or not to take these missions, but there are rewards for them, as well as helping to learn about the other character's motivations. There is also no time limit for completing a sidequest, but certain sidequest bosses may grow stronger if you choose to progress through certain points of the main story.
+	<br>
+	<br>
+	 Equipment: Equipment has been simplified. As opposed to many separate pieces of armor and multiple hand slots, characters each have a few different and unique weapons that do most of the modifications to statistics. In many games, weapons get progressively better as you make progress. In Legend of Moros, there are always benefits and drawbacks. A weapon may have a high critical hit rate, but poor defenses, for example. You can also equip one weapon mod (to change your basic attack's element, or to give a chance for a status effect), one seal (which lets your character use a skill they otherwise couldn't), and two accessories (status resistance, extra attack power, health regeneration, and so on). 
+	<br>
+	<br>
+	 Unique Combat: This game uses an unusual Stamina system. As opposed to games where spellcasters use MP and everyone else is just attacking, Stamina is consumed by a character whenever they use a skill or spell. 
+	<br>
+	<br>
+	 But that's just using another name for a resource, and this is still a turn-based game. How is that different? 
+	<br>
+	<br>
+	 Each character can set a certain Tactic; this allows them to gain Stamina whenever certain criteria are met. Which do you prefer: having your main healer regain Stamina whenever they heal someone, or whenever a party member takes damage? While each option covers multiple criteria (so you could have both of these), there are many different ways each character can be used. While RPGs have tended toward more of an action and reflexive skillset as time has gone on, I have tried to make this the epitomy of a strategy RPG.
+</p>
+<p>
+	 There's a large and interesting cast of characters, and for the vast majority of the game, you can choose to have any four characters that you've found in the active party. If you don't like the main character, you can swap them out very early on. Also, at the beginning of the game, you are able to pick the difficulty you'd like to play on. (you can also press F1 on the keyboard to check/edit controls, if need be)
+</p>
+<p>
+	If you have any issues or feedback, you can email me at cannibalinteractive@gmail.com.</p>
+<p>
+	Thank you for your interest!
+</p>
+<p>
+	<strong>12/3/2016 Update:<br>-Fixed an error where certain fights created black screens afterward<br>-Party members not in combat gain 75% of Exp., instead of 50%.<br>-There is now an item category for "Directions". When used, you will be told what direction the chosen town is from your current location.</strong></p>
+<p>
+	System Requirements:
+</p>
+<p>
+	Processor: 1.6 GHz
+	<br>
+	Memory: 2 GB RAM
+	<br>
+	Graphics: 1024 x 768 pixels or higher desktop resolution
+	<br>
+	Hard Drive: 255 MB HD space
+</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

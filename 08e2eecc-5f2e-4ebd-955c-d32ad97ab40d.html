@@ -1,0 +1,295 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Infinitroid</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Infinitroid</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="#quicklink-6/22/2024">6/22/2024</a> 16:56:29</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="#quicklink-6/22/2024">6/22/2024</a> 17:43:55</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="#quicklink-8/2/2018">8/2/2018</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Platform">Platform</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://www.twitch.tv/directory/game/Infinitroid" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p>Infinitroid - a 64x64 jam game for #lowresjam.&nbsp; Now in beta version, probably final release as well since I&nbsp;am now having issues fitting any patch code into the game memory.</p>
+<p>Explore "infinite" metroid-like levels generated on the fly.&nbsp; 32 of them actually, due to how codes work, but it's enough ;)</p>
+<p><strong>Controls:</strong></p>
+<p>LEFT and RIGHT to walk.</p>
+<p>Z and X are used for input/jumping/shooting.</p>
+<p>Hold DOWN and press Z to swap weapons once you find an alternate gun.</p>
+<p>DOWN interacts with SHIP and ELEVATORS(yes, even for going up)&nbsp; Hold the button down to heal while standing on the SHIP.&nbsp;&nbsp;When escaping, stand on&nbsp;your ship and press DOWN to win the game.</p>
+<p>UP shows the MAP.&nbsp; It's primitive, but should help in most cases of being lost.</p>
+<p><strong>Known issues:</strong></p>
+<ul><li>I have had a map generate with 0 time in the escape sequence once while testing.&nbsp; I'm not sure what triggered it, and haven't seen that bug since.&nbsp; If anyone discovers the ID, post it so I can track down what's going wrong.</li></ul>
+<ul><li>The boss is VERY HARD without the upgraded guns.&nbsp; His bullets deal 90 damage, so it's no joke.&nbsp; The final weapon in the game&nbsp;can take him down pretty easily if you know where/when to shoot him.&nbsp; He has a sneaky time to shoot him in his animations for the hit to count.&nbsp; There is little feedback for a hit against him, sorry, I am hitting token limits.</li><li>Minor visual issue, the grid doesn't color itself "completed" when a collectable is picked up.&nbsp; This is due to a token count issue.&nbsp; I have not figured out a way to squeeze in the color change logic.&nbsp; The world map display updates properly, so use that to confirm your collectables.</li></ul>
+<p><strong>Change Log:</strong></p>
+<p>7/12/2019</p><ul><li>Surprise ninja update!&nbsp; Actually just exporting with the new version of pico8 to add the&nbsp;support for mobile controls.&nbsp; Now if you are on a phone, the game should be creating some game boy like&nbsp;buttons below it for play on your phone.&nbsp; The feature is part of the new exporter for Pico8, so hopefully this works out of the box.</li></ul>8/17/2018<br>
+<ul><li>Added p8 source file to downloads.&nbsp; If you own pico8, feel free to download and mod to your heart's content.&nbsp; Please credit me as the original designer/programmer&nbsp;(Dark Griffin) if you release a modded version to the public.&nbsp; But by all means, have fun changing all the graphics/tiles/code to mod your own characters/tile layouts/enemy AI into the game.<br><br>You might have to shave a few tokens from other parts of the game&nbsp;if doing enemy AI, the cart is literally right on the edge of full, sorry.&nbsp; A suggestion for starting this&nbsp;is to redo the collision code to check for Manhattan distance instead of box positioning.&nbsp; I'm sure there are many others lurking around if you search carefully enough.&nbsp; Enjoy!</li><li>No change to web game, to keep voting fair.</li></ul>
+<p>8/14/2018</p>
+<ul><li>Fixed jump through roof bug.&nbsp; YAY!</li><li>Respawn now fills the player's tanks, to save you all some grinding time.&nbsp; It also helps players not get stuck in certain very unfortunate room/elevator checkpoint situations.</li><li>Map screen added to game, also shows collected items as a different color.</li></ul>
+<p>8/13/2018</p>
+<ul><li>Restructured many code calls to make objects share functions across the game.&nbsp; This earned me a little bit of extra tokens to use.&nbsp;</li><li>Added checkpoint system.&nbsp; Death during the mission will restart you at the last elevator used, or your ship if you died in the beginning.&nbsp; If you die during escape, you will spawn just before picking up the experiment item to try again.&nbsp; This should help make it much easier to play the game! ;)</li><li>Added final boss.&nbsp; Game now is fully playable from start to finish, with progression, items, boss fight, and escape sequence.</li><li>Numerous bugs/leaks crushed to prevent crashes.</li></ul>
+<p>8/11/2018</p>
+<ul><li>Removed map overview display for now, in favor of an updated room display.&nbsp; <br><br>The intent is for it to come back as a "map room" or a "map display mode".&nbsp; I would need a few solutions for the map offsets and map gen runaway first to keep maps "in screen".&nbsp; <br><br>The problem is one of character memory, I'm already pushing the compression limits for carts as it is.&nbsp; Currently, playing without a map of the planet really sucks though.&nbsp; I'll see what, if anything, I&nbsp;can do after the key features are in place.</li><li>Updated the nearby room display to better show the rooms features/exits.&nbsp; It's much more useful for navigation now.</li><li>Added pickup rooms, stats, player health.</li><li>Added a second enemy type, uses new enemy bullet system.</li><li>Enemies hurt player.</li><li>Game cycles through from intro screen, seed screen, game play, and results(on death or mission completion).&nbsp; Don't get too attached to the seed layouts,&nbsp;map generation is still a work in progress.</li><li>Game tracks time and results of collection percentage across maps.</li><li>Sub weapons are in place, they just deal more damage for now.&nbsp; They have ammo but are severely limited in this build due to lack of an enemy drop system.&nbsp; So use them very wisely(or not at all, really).</li><li>The capsule and escape sequence exists in the game, game can be finished.&nbsp; Everything is stacked on the first 4 floors for this build in a haphazard manner.</li><li>Fixed a billion possible crashes throughout the generator, player room transitioning, and enemy spawning system.&nbsp; That code was a total mess in the first draft, it's all fixed now.</li><li>Rendering is all done through the same draw functions now, so tiles, enemies, player, and bullets all run a single function.&nbsp; This saves tons of memory for fitting in other features.</li><li>PRESSING UP at the player ship will heal the player.&nbsp; This is also how you escape with the capsule.&nbsp; There isn't a documentation or help prompt for this yet, I know, shame on me.</li></ul>
+<p>8/3/2018</p>
+<p>Still not much of a game.&nbsp; A lot of ground covered though!</p>
+<p>Added:</p>
+<ul><li>Rooms(screens) now have "types".&nbsp; This allows placing a start room and marking elevator shaft areas for now.&nbsp; Eventually this will be how the game populates the map with different room generation rules.&nbsp; (The start room just generates a floor and has no ship graphic yet.&nbsp; I plan to add in some sort of start sequence to begin the game in the polish phases later.)</li><li>Map generation is in place.&nbsp; It's not very smart but it's mostly functional(see known issues).&nbsp; If you crash on boot, just restart for a new world seed.</li><li>rooms now use x y position based seeds, meaning all rooms can recreate themselves when revisited.&nbsp; This will eventually need a map seed added to it's value to prevent all map x,y positions being the same across worlds.</li><li>Sound effects first pass, rudimentary sounds in place for shoot, jump, and enemy death.</li><li>music/atmosphere first pass.&nbsp; Rooms/screens now play music based on type of room and location.&nbsp; Currently only the top row works.&nbsp; Enjoy that elevator shaft room music, should bring a bit of a smile to metroid fans even if it's not the exact tune from the game.</li><li>Rooms support offsets for the room construction sprites, this is the start of making the areas more "unique" so they don't use the same green tiles all the way down.</li><li>Basic enemy spawning systems are now in place.&nbsp; The only enemy is a floating blob for now.&nbsp; The AI system can be expanded to make new types.&nbsp; Enemies are harmless for now since player doesn't have a damage system yet.</li><li>Basic bullet collision, it's box based which is good enough for now.&nbsp; Enemies will take damage and die.&nbsp; Bullets have a concept of damage values.</li><li>There is a basic "game mode" structure to the code now, for future use making title, results, and seed entry screens.</li></ul>
+<p>Known issues:</p>
+<ul><li>Sometimes on world generation the game crashes, not sure why yet.&nbsp; I suspect it has something to do with creating the start on top of the elevator, or otherwise moving it out of play.&nbsp; The crash location in code is at the elevator shifting code, so maybe it's escaping the map array.&nbsp; I may need to find a way to select 2 rooms from a row range&nbsp;without picking the same one twice to solve this issue.&nbsp; (I'll need that solution for the metroid-like&nbsp;power up rooms later anyway.)</li><li>There is no way to navigate from the top row for now, since elevators and prop areas for rooms&nbsp;are not implemented yet.</li><li>Rarely I have witnessed the map generating outside the boundary of the map area.&nbsp; There isn't any crashes but it looks very odd on the display.&nbsp; Probably will need to fix this if I intend to show the map on screen in the hud.</li></ul>
+<p>8/1/2018</p>
+<ul><li>Initial upload.&nbsp; Not much yet to play/see, but a lot under the hood.&nbsp;&nbsp;</li><li>The screen level you are seeing is being made from 4x4 chunks, with a roof and floor being built using their own selections of chunk.&nbsp; Restart the game cart to see this in action.</li><li>The player can move with acceptable "alpha" tile collisions and pretty lame jumping physics.&nbsp; Ramps don't get accounted for yet, I'm still thinking up solutions to that.&nbsp; For now they are square tile collisions.</li><li>The player can shoot using a button, they are limited to 3 shots at a time.&nbsp; The shots are actually making use of a full on bullet system that is work in progress.&nbsp; Eventually enemies and the player will all use this same system, with bullets tagged for being friendly or not.</li></ul>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

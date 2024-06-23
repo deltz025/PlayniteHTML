@@ -1,0 +1,290 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Everybody Got Mad!</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Everybody Got Mad!</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="#quicklink-6/22/2024">6/22/2024</a> 16:56:49</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="#quicklink-6/22/2024">6/22/2024</a> 17:39:23</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="#quicklink-12/31/2014">12/31/2014</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://amon26.itch.io/everybody-got-mad" target="_blank">Itch</a><br/><a href="https://www.twitch.tv/directory/game/Everybody%20Got%20Mad" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p>Description:</p>
+<p>Everybody Got Mad is a competitive (local) two player game which also features a single player bot training stage.  This project began in november as a conversation over too much caffeine at a local cafe.  </p>
+<p>While showing a few friends how I develop games, I decided to include them into the process and together we developed this frantic surreal little thing you see now before you.  <br></p>
+<p>We had non-artists create concept art.  Non level-designers design levels, and non-musicians come up with melodies.  It was then my job to try and sharpen up all of our accumulated ideas into a comprehensive game before new years eve.</p>
+<p>We liked the idea of giving the audience a lot of goodies even though the game itself isn't a very complex one, so the zip contains Everybody Got Mad the video game, along with concept art, doodles, character bio images, the poster graphic, the story and the theme song in mp3 format.</p>
+<p>OKAY SO HERES WHAT HAPPENED</p>
+<p>DADDY DAFFODIL RIGHT?! HE WAS HAVING THIS BIG BARBEQUE WITH HIS SON N WIFE N HE GOT SOME STEAKS YOU KNOW THOSE KINDS DOWN AT CHONCEYS FOR 4.99 RIGHT? YEAH! THOSE! ANYWAY HE WAS ALL COOKIN OUT ON THE GRILL WHEN STOVEPIPE STRIPECAT WALKS UP OUT OF THE FUCKING NOWHERE! 'N YOU KNOW HIM AND HES ALL 'REEOWR REEEOWR SOMEBODY OUGHT TO RUN YOU AN YOUR FAMILY WITH A LAWNMOWER!" NATCH, DADDY GOT REAL MAD AND SHOT A ROCK AT HIM BUT STOVEPIPE WAS ALL LIKE 'SHOOOOM' AND DID SOME MATRIX SHIT AND DOJED IT. GUESS WHO IT HIT</p>
+<p>NO</p>
+<p>NOT HIM</p>
+<p>NO</p>
+<p>GUESS AGAIN</p>
+<p>YEAH. IT HIT JONNY YEN. JONNY THE SEX MACHINE YEN IN HIS GTO! SO NOW JONNYS ALL LIKE 'HEY!.. WATCH IT!" AND PULLED OUT HIS SWITCHBLADE! BUT IT BROKE! AND EVERYONES ALL LAUGHING AT HIM NOW AND JONNYS GOT EGG ON HIS FACE COS HE CANT BRING NONE OF THE PAIN. THAT'S WHEN ALANA AND ERHAN THE IMPLAUSIBLE SHOW UP, ALREADY FIGHTING WITH EACHOTHER ABOUT NAZIS AND EGG WHITES. AND JONNY AND DADDY DAFFODIL AND STOVEPIPE STRIPECAT ARE ALL 'FUCK ON YOU GUYS WERE TRYING TO FIGHT HERE!!' </p>
+<p>NATURALLY THE TWO DID NOT TAKE KINDLY DO THESE WORDS</p>
+<p>ERHAN THE IMPLAUSIBLE STARTS SCREAMING. AND I MEAN SCREAMING. LIKE RIPPING HIS ROBE OPEN AND SHOWING EVERYBODY WHATS UNDERNEATH AND THREATENING TO USE HIS 'WIZARD STICK' ON EVERYONE. IT GOT REAL AWKWARD. IT GOT SO AWKWARD EVERYONE ALMOST STOPPED FIGHTING. THATS WHEN HAMDUCK CAME OVER TO USE DADDY DAFFODILS TOILET FOR THE 152TH TIME IN THE DAY. DADDY DAFFODIL GOES "YOU ARE THE BOILED FAILURE OF AN ETERNITY'S UNIVERSE!" SINCE HAMDUCK CANT TALK HE JUST STARTS MAKING THAT NOISE. YOU KNOW THAT NOISE? GOD THAT NOISE. ANYWAY</p>
+<p>THEYRE ALL OUT IN THE MIDDLE OF THE STREET JUST YELLING AND SCREAMING. ITS BECOMING A BIG SCENE. A NEWS TRUCK SHOWS UP. THE NEWS IS TRYING TO FILM IT WITHOUT BEING ATTACKED. BUT THEN THEY FORGOT TO CLEAN OUT THE OWL TRAPS AND LO AND BEHOLD A FREAKING ACID-OWL STUCK IN ONE OF THEM ESCAPES AND STARTS LEAVING ITS PSYCHADELLIC POOPOOP ALL OVER THE VANS AND CARS AND POWERWHEELS ALL OVER THE PLACE. EVERYONE HAS TO RUN FOR COVER. ONE OF THE POOPS RIPS OPEN A PORTAL BETWEEN SPACE AND TIME INTO THE DIMENSON WHERE THINGS THAT SHOULDNT EXIST DO. LIKE A LOVECHILD OF STEVE MCQUEEN AND STEVEN SEGAL, OR STRAWBERRY FLAVORED SANDPAPER OR A DINOSAUR WITH FAIRY WINGS, OR THIS STORY</p>
+<p>A DINOSAUR WITH FAIRY WINGS COMES FLYING OUT. NATURALLY ITS PISSED. ITS JUTS PISSED BECAUSE ITS A DINOUSAR WITH FREAKING FAIRY WINGS. WHATS IT GOING TO DO WITH THAT AND WHY IS IT IN THIS STUPID DIMENSION OF SCREAMING IDIOTS? </p>
+<p>WELL ANYWAY</p>
+<p>AS THEY KEEP FIGHTING, DADDY DAFFODILS STEAKS ARE BURNING UP. THEYRE BURNT TO CRIPS. CHARCOAL THE FUCK BRIQUIETTES. ITS A TRAVISTY. ITS SO BAD THAT ZESTO THE HOTDOG, THE PRESIDENT OF THE ZESTO MEAT COMPANY FINDS OUT AND DRIVES OUT TO LECTURE HIM ABOUT WASTING MEAT AND BRINGS HIS INCOMPETENT SIDEKICK MOUNTAINJIM. MOUNTAIN JIM IS ALSO A DICK. BUT LITTLE DID HE KNOW WHAT HE WAS ABOUT TO GET INTO. SO THERES ACID OWL POOP EVERYWHERE. NEWS CREWS. AND A FAIRY DINOSAUR RUNNING AROUND LIVID AT THE VERY FACT IT OR ANYTHING'S EXISTING</p>
+<p>AAH! SORRY! SOMETHING GOT STUCK IN MY THROAT!</p>
+<p>NOTHINGS GETTING SOLVED, NOBODYS BACKING DOWN, NOBODYS WANTING TO COME TO A REASONABLE CONCLUSION ON JACK DOODLY BECAUSE THEYRE ALL TOO DAMN HAPPY ABOUT BEING MAD! BEING MAD IS LIKE THAT! DID YOU KNOW ANGER RELEASES ENDORPHINS? IT DOES! THAT'S WHY WHEN YOU GET REAL PISSED YOU WANT TO STAY REAL PISSED! ITS A REAL FLAW IN OUR GENETIC MAKEUP! SOMETIMES IT WORRIES ME AND MAKES ME WONDER WHAT GOD WAS THINKING! </p>
+<p>ANYWAY!</p>
+<p>SO EVERYONES MAD AND THEN-DID I TELL YOU THIS ALL HAPPENED IN TEXAS? WELL IT HAPPENED IN TEXAS AND TEXAS WAS WATCHING ALL OF THIS HAPPEN AND WAS LIKE 'SHUT UP IM TRYING TO SLEEP' AND THEN -EVERYBODY- DADDY DAFFODIL, ERHAN THE IMPLAUSIBLE, HAMDUCK, ALANA-X, JONNY YEN, MOUNTAIN JIM, ZESTO THE HOTDOG, AND STOVEPIPE STRIPECAT WERE LIKE "TEXAS SUCKS!'</p>
+<p>THEN TEXAS GOT UP AND GOT A GUN AND EVERYBODY REALIZED THERE WAS NO GOING BACK.</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

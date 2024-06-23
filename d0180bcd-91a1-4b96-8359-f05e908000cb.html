@@ -1,0 +1,308 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Cosmoteer Classic</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Cosmoteer Classic</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="#quicklink-6/22/2024">6/22/2024</a> 16:55:06</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="#quicklink-6/22/2024">6/22/2024</a> 17:45:08</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="#quicklink-6/24/2017">6/24/2017</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Real Time Strategy (RTS)">Real Time Strategy (RTS)</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Simulator">Simulator</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Walternate Realities">Walternate Realities</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Walternate Realities">Walternate Realities</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="#quicklink-Co-Operative">Co-Operative</a><br/><a href="#quicklink-Multiplayer">Multiplayer</a><br/><a href="#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://store.steampowered.com/app/799600" target="_blank">Steam</a><br/><a href="https://cosmoteer.net/" target="_blank">Official</a><br/><a href="https://walternaterealities.itch.io/cosmoteer" target="_blank">Itch</a><br/><a href="https://twitter.com/CosmoteerGame" target="_blank">Twitter</a><br/><a href="http://discord.cosmoteer.net/" target="_blank">Discord</a><br/><a href="https://www.youtube.com/c/Cosmoteer" target="_blank">YouTube</a><br/><a href="https://www.facebook.com/Cosmoteer" target="_blank">Facebook</a><br/><a href="https://www.instagram.com/cosmoteergame?hl=en" target="_blank">Instagram</a><br/><a href="https://www.reddit.com/r/Cosmoteer" target="_blank">Reddit</a><br/><a href="https://www.twitch.tv/directory/game/Cosmoteer:%20Starship%20Architect%20&%20Commander" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h1 class="custom-slogan"><em>The ultimate starship designer,<br>powered by a deep game simulation...</em></h1>
+<p><strong>Cosmoteer is a starship design, simulation, and battle game.</strong> Design a fleet of ships by laying out individual rooms and corridors, including cannons, lasers, shields, and thrusters. Battle other starships to earn bounties and use that money to expand your own ship. A dynamic crew and combat simulation makes every design decision important and interesting.</p>
+<h2 style="margin-top:20px">Best-In-Class Starship Designer</h2>
+<p><img src="https://cosmoteer.net/gifs/ship_designer.gif" class="custom-inline_gif" loading="lazy"></p>
+<p><strong>Design the greatest starship ever made</strong> using an interface that is easy-to-learn yet incredibly flexible.</p>
+<p><strong>Build your ship by placing individual modules</strong> onto a grid—weapons, shields, engines, reactors, crew's quarters, and more! Few restrictions and no pre-defined, creativity-limiting hull shapes mean you can create almost any ship you can imagine.</p>
+<p><strong>The exterior of a ship is like an artist's canvas,</strong> but it requires no drawing ability to make your ship look great! Simply pick a color and texture to customize your ship's basic appearance, then optionally add decals such as shapes, symbols, and letters to give it extra visual flourish. Painting your ship is free and has no effect on gameplay.</p>
+<h2>Intelligent Crew Simulation</h2>
+<p><img src="https://cosmoteer.net/gifs/crew_sim.gif" class="custom-inline_gif" loading="lazy"></p>
+<p><strong>Every starship is operated by a crew</strong> numbering from half-a-dozen to hundreds—sometimes more than a thousand—of individually-simulated people.</p>
+<p><strong>A ship's crew is its lifeblood.</strong> Crew not only operate its controls, but they also carry supplies such as ammunition and power batteries to weapons and systems. When a weapon wants to shoot, the crew go pick up ammo or batteries at an ammo factory or reactor and bring them to the weapon—all simulated in real-time.</p>
+<p><strong>Crew are pretty smart</strong> and act mostly on their own, which is a good thing since there can be so many. Your crew are smart enough to figure out what controls need operating, what systems need ammo or power, and how best to get around your ship. They're even smart enough to avoid routes that are already jammed with other people.</p>
+<p><strong>The crew simulation is what makes starship design so interesting</strong>, because how fast a cannon can shoot or how long a shield can stay charged <em>depends directly on how quickly crew can deliver ammo or power to it</em>. As a player, you'll have to think carefully about how you design your ship's layout so that it operates at peak efficiency without exposing its more vulnerable (and sometimes explosive!) modules.</p>
+<h2>Physics-Driven Flight &amp; Combat</h2>
+<p><img src="https://cosmoteer.net/gifs/combat.gif" class="custom-inline_gif" loading="lazy"></p>
+<p><strong>Every ship is part of a 2D physics simulation</strong>, and the position and orientation of its thrusters realistically affects its movement. Small ships with lots of thrusters are fast and nimble, while large ships with proportionally fewer thrusters are naturally slower and more difficult to maneuver.</p>
+<p><strong>Weapons obey the laws of the physics simulation.</strong> Whether or not a cannon or laser hits an enemy depends not on a dice roll but upon the trajectory of the shot and the size and speed of the enemy.</p>
+<p><strong>Damage is tracked module-by-module</strong>, and each module can be individually targeted &amp; destroyed. Some modules can explode, causing collateral damage to the surrounding modules, so you'll have to think carefully about where you place your reactors and munitions. Too close to the edge and they'll be exposed to enemy fire; too far and your weapons won't fire fast enough.</p>
+<p><strong>Ships can break apart</strong> into multiple pieces when their connecting modules are destroyed. Usually this will be a crippling blow, but any piece that has a control room, power, and thrusters can continue to operate independently, potentially remaining a threat to the enemy.</p>
+<h2>Single-Player</h2>
+<p><img src="https://cosmoteer.net/gifs/bounty_hunter.gif" class="custom-inline_gif" loading="lazy"></p>
+<p><strong>You are a bounty hunter</strong>, traveling from sector to sector, hunting down renegade enemies and destroying them.</p>
+<p><strong>Earn money for every enemy vanquished</strong>. Use your income to repair and upgrade your own fleet, growing bigger and more powerful with every victory.</p>
+<p><strong>Explore a galaxy</strong> in search of bigger and more powerful enemies. The galaxy will crumble before your almighty armada!</p>
+<p><strong>Or play in a creative sandbox mode</strong> with unlimited credits if being a bounty hunter isn't your cup of Earl Grey—the only limit is your imagination! (And the power of your computer.)</p>
+<h2>Multiplayer</h2>
+<p><img src="https://cosmoteer.net/gifs/tactics.gif" class="custom-inline_gif" loading="lazy"></p>
+<p><strong>Battle your friends and enemies in real-time</strong>, pitting your designs against theirs. Compete to be the master "Starship Architect &amp; Commander" against up to 7 other players in Team vs Team and Free For All battles.</p>
+<p><strong>Configure a variety of game options</strong> by specifying number of ships, total funds, game speed, and other options. Play tiny skirmishes, massive fleet battles, or anywhere in between.</p>
+<p><strong>Play online</strong> in public or private lobbies. Local Area Network and direct I.P. address connections are also supported.</p>
+<p><strong>Important Note:</strong> Multiplayer is NOT SUPPORTED between 32-bit and 64-bit operating systems!</p>
+<h2>And more!</h2>
+<p><img src="https://cosmoteer.net/gifs/ships.gif" class="custom-inline_gif" loading="lazy"></p>
+<p><strong>Everything you should expect from a PC game,</strong> including customizable controls, windowed and borderless display modes, support for high-resolution displays, no mandatory locked framerates, and dozens of other options to tailor the game to your own preferences.</p>
+<p><strong>It's easy to share your ship designs</strong> with friends and other players. Ships are saved as simple PNG image files and can be easily shared on social media like Twitter, Discord, and the official forums—just drag-and-drop the image from your browser right into Cosmoteer and the ship will be instantly playable!</p>
+<p><strong>A powerful modding framework</strong> lets mods change almost any part of the game data, opening up a universe of possibilities beyond the base game. A mods manager makes it easy to install and uninstall mods created by the Cosmoteer community. </p>
+<p><strong>Unobtrusive tutorials</strong> that don't interrupt gameplay and are easy to dismiss or turn off altogether. There's no special "tutorial level" you need to play through—the context-sensitive tips are built-in to the main Bounty Hunter mode.</p>
+<p><a href="https://cosmoteer.net" referrerpolicy="origin" rel="nofollow noopener">Main Website</a></p>
+<p><a href="http://forum.cosmoteer.net/" referrerpolicy="origin" rel="nofollow noopener">Forum</a></p>
+<p><a href="http://discord.cosmoteer.net/" referrerpolicy="origin" rel="nofollow noopener">Chat (Discord)</a></p>
+<p><a href="http://wiki.cosmoteer.net/" referrerpolicy="origin" rel="nofollow noopener">Wiki</a></p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

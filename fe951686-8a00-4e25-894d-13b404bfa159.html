@@ -1,0 +1,287 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>PhilGood</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> PhilGood</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="#quicklink-6/22/2024">6/22/2024</a> 16:56:32</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="#quicklink-6/22/2024">6/22/2024</a> 17:39:50</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="#quicklink-5/3/2019">5/3/2019</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Phil Bod">Phil Bod</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Bodgamestudio">Bodgamestudio</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://store.steampowered.com/app/1082620" target="_blank">Steam</a><br/><a href="https://www.philgoodgame.com" target="_blank">Official</a><br/><a href="https://www.twitch.tv/directory/game/PhilGood" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h4><strong>Vous êtes prisonnier d'une «ligne», comme si vous en faisiez partie!&nbsp;<br>… Juste à côté, c'est la mort. Mais pourquoi est-ce arrivé…?&nbsp;&nbsp;</strong></h4>
+<h4><strong>Et comment en sortir indemne et atteindre le bout de cette «ligne»&nbsp; <br>beaucoup plus vivante et dangereuse qu'il n'y parait.</strong></h4>
+<h4></h4>
+<p><em>PhilGood est un jeu de plateforme en 2D contenant un jeu d'action-aventure et une réflexion qui met l'accent sur un gameplay varié et un scénario riche et solide.</em>&nbsp;</p>
+<p>Une entité inconnue vous envoie chercher les barres d'infini dispersées dans les différents empires. <br>Le seul moyen pour PhilGood de retrouver ses proches est d'accepter le défi et de suivre les instructions données par cette entité. <br>Combattez tous les ennemis, résolvez toutes les énigmes afin de surmonter les obstacles et de vous rapprocher un peu de la «vérité». <br>A chaque instant, votre vie ne tient qu'à un fil, même si la mort, jamais tout à fait définitive, n'est qu'un passage vers une autre facette pour mieux comprendre cet univers mystérieux.</p>
+<h5></h5>
+<h3><br>Caractéristiques</h3>
+<ul><li>Réflexion.&nbsp;</li><li>Combattre, tirer et habileté.&nbsp;</li><li>Vitesse et modération.&nbsp;</li><li>Eau et souffle sauvé.&nbsp;</li><li>Enigmes, indices cachés et décodage.&nbsp;</li><li>Une variété de messages, nécessaires pour comprendre un scénario rempli de métaphores, de mystères et de découvertes.&nbsp;</li><li>Accompagné d'une bande originale intéressante et parfois surprenante.</li></ul>
+<h3><br>Une touche de philosophie</h3>
+<p>Un scénario et une «tradition» inspirés par la pensée d'un philosophe de la Grèce antique, établissant un parallèle avec le monde contemporain pour nous donner une autre perspective.&nbsp;</p>
+<h5><strong>"Une réflexion sur le monde pour les joueurs qui veulent voir plus loin…"&nbsp;</strong></h5>
+<p>Vous ferez des découvertes inattendues sur certains des événements qui ont marqué l’humanité, tant pour le bien que pour le mal.&nbsp;&nbsp;<br>Une certaine critique des dérapages incontrôlables du capitalisme excessif et des abus de pouvoir des "vrais dirigeants" de nos sociétés.</p>
+<h3><strong><br>Donnez-lui un avenir ... </strong><strong>PhilGood a besoin de vous!</strong><strong>&nbsp;</strong> <strong></strong><strong>&nbsp;</strong>&nbsp;</h3>
+<p>Ce jeu est en développement. La version actuelle n'est pas encore la V.1 final mais permet déjà plus de 2h00 de jeu.&nbsp;<br><strong>Starting October 13th (9:00 am HNE) a new 0.1.3 paid version that increases the playing time by ± 50% and other important improvements.</strong></p>
+<p>Ultimately, V1.0 will feature more puzzles, mysteries and games, and will be released also on other platforms.&nbsp;</p>
+<p>Maintenant :&nbsp; &nbsp;<a href="https://store.steampowered.com/app/1082620/PhilGood/?beta=0" target="_blank" rel="nofollow noopener" referrerpolicy="origin">PhilGood sur Steam</a></p>
+<p><a href="https://docs.google.com/forms/d/e/1FAIpQLSe203EDW8yVKJLxc5NbNVTdn6S6a0gVcun1Z85-i_L9nOeqVg/viewform?usp=pp_url" target="_blank" rel="nofollow noopener" referrerpolicy="origin">Cliquez ici pour nous faire part de vos commentaires</a> et nous aider à améliorer encore plus le jeu.</p>
+<h3><br>Suivez PhilGood</h3>
+<p>Ce jeu a été réalisé par Philippe Bodenghien (Phil Bod pour amis) avec l'aide de son fils David.&nbsp;<br>PhilGood est mon premier projet qui a débuté en juillet 2017.&nbsp;</p>
+<ul><li><a href="https://www.philgoodgame.com/" target="_blank" rel="nofollow noopener" referrerpolicy="origin"></a><a href="https://www.philgoodgame.com" rel="nofollow noopener" referrerpolicy="origin">Site Internet</a></li><li><a href="https://www.philgoodgame.com/categorie/devblog/" rel="nofollow noopener" referrerpolicy="origin">Bulletin</a></li><li><a href="https://www.youtube.com/channel/UCLiWaKabi1XdMWByjwpjCuw" rel="nofollow noopener" referrerpolicy="origin">Youtube</a></li><li><a href="https://twitter.com/philgoodgame" rel="nofollow noopener" referrerpolicy="origin">Gazouillement</a></li><li><a href="https://www.facebook.com/Philgoodgame-291887971697450/?view_public_for=291887971697450" target="_blank" rel="nofollow noopener" referrerpolicy="origin"></a><a href="https://www.facebook.com/Philgoodgame-291887971697450/?view_public_for=291887971697450" rel="nofollow noopener" referrerpolicy="origin">Facebook</a></li></ul>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

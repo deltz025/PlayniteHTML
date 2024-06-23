@@ -1,0 +1,312 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Onigami</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Onigami</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="#quicklink-6/22/2024">6/22/2024</a> 16:56:31</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="#quicklink-6/22/2024">6/22/2024</a> 17:30:18</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="#quicklink-3/31/2019">3/31/2019</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Strategy">Strategy</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Tactical">Tactical</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Turn-based strategy (TBS)">Turn-based strategy (TBS)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://whalesandgames.itch.io/onigami" target="_blank">Itch</a><br/><a href="https://www.twitch.tv/directory/game/Onigami" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p class="text-center"><img src="https://img.itch.zone/aW1nLzE5ODM3MjgucG5n/original/VJsOjj.png" loading="lazy"><br></p>
+<p><em>The</em> <em>Empire </em>has foreseen an attack from creatures from a different realm. As the wind changes, their fears materialize along with the <em>Portal of the Oni.</em> The vile creatures are ready to invade, but the brave soldiers of the Empire are prepared to defend their land.<br></p>
+<p>Take turns to construct your buildings and rice fields, deploy your units, and attack the Oni. You’ve got Samurais, Geishas and Ninjas under your command, but be wary, for the Oni have a similar hierarchy! Defend your Castle, and destroy the Portal of the Oni to stop the evil that spreads through the land!</p>
+<p class="text-center"><img src="https://img.itch.zone/aW1nLzE5ODM3MjgucG5n/original/VJsOjj.png" loading="lazy"><br></p>
+<p><em>Disclaimer:<br></em><em>Onigami was originally developed as an academic prototype around mid-2017 and although it has since received polish and bug-fixes, it might still be rough around the edges and lacking polish in some aspects of the game.</em></p>
+<p class="text-center"><img src="https://img.itch.zone/aW1nLzE5ODM3MjgucG5n/original/VJsOjj.png" loading="lazy"><br></p>
+<h2>Features</h2>
+<ul><li>Player vs AI TBS action! Buy your buildings, place them around each other, and wait until they deploy units, which you can move around to attack the enemy!</li><li>Train the All-Round Samurais, the ranged and nimble Ninjas, or the healing tactical Geishas! Push with raw strength, weaken them from afar, or flank and support with grace!</li><li>Build rice fields to increase your money flow, and place banners to spread faster across the land!</li><li>Choose how tall and wide you’d like to generate the world!</li></ul>
+<p class="text-center"><img src="https://img.itch.zone/aW1nLzE5ODM3MjgucG5n/original/VJsOjj.png" loading="lazy"><br></p>
+<h2>Controls</h2>
+<p><strong><em>Keyboard and Mouse Combo</em></strong>
+  </p>
+<ul><li>Move the camera with <em>WASD</em> keys.
+  </li><li>Hover over a tile and menu with the Mouse Cursor.   <ul><li>Hovering the <em>Buildings </em>pane opens it, allowing you to pick and place a building. This tab is scrollable.
+  </li><li>Pressing the <em>Middle-Clicking</em> quickly focuses the camera on the currently hovered tile.
+  </li></ul></li><li>Select <em>Units </em>and <em>Buildings </em>by <em>Left-Clicking</em>, cancel orders or placements by <em>Right-Clicking</em>.
+  </li><li>Press <em>F </em>to quickly focuses the camera on <em>The Empire’s Palace.</em>
+  </li><li>Press <em>Q and E </em>to quickly swap between active units in the field.   </li></ul>
+<p><strong><em>Controller (Xbox Bindings)</em></strong>
+  </p>
+<ul><li>In control mode, the camera is independent from the cursor, as to allow you to pane the camera without having to move the cursor.
+  </li><li>Move the camera with the <em>Right Stick</em>. Pressing the <em>Right Stick</em> quickly focuses the camera on <em>The Empire’s Palace</em>.
+  </li><li>Move the cursor with the <em>Left Stick</em>. Pressing the <em>Left Stick</em> quickly focuses the camera on the currently hovered tile.
+  </li><li>Select <em>Units </em>and <em>Buildings </em>with the <em>A Button </em>or the <em>Trigger buttons</em>, cancel orders or placements with the <em>B Button</em>.
+  </li><li>Press the <em>X Button </em>to open the building pane, allowing you to pick and place a building. This tab is scrollable.
+  </li><li>Press the <em>Left and Rich Shoulder Buttons </em>to quickly swap between active units in the field.
+  </li></ul>
+<p><strong><em>Building-Specific</em></strong><em></em></p>
+<ul><li>Buildings allow you to train units as well as for&nbsp;<em>Gamis</em>&nbsp;(in-game currency). At the start of the game, you can place them down around your palace, but each building will respectively expand the building placement limits to include the tiles around it.</li><li>The&nbsp;<em>Samurai Bell, Ninja Dojo&nbsp;</em>and&nbsp;<em>Geisha Theatre&nbsp;</em>train units of their respective kind after a certain amount of turns after which they can be placed down and used actively.</li><li>The&nbsp;<em>Rice Fields&nbsp;</em>will generate an amount of&nbsp;<em>Gamis</em>&nbsp;(in-game currency) after a certain amount of turns.</li><li>The&nbsp;<em>War Banners&nbsp;</em>expand the borders in which you can place down buildings by twice the amount of a normal building, but only two can be placed down at one time.</li></ul>
+<p><strong><em>Unit-Specific</em></strong>
+  </p>
+<ul><li><em>Samurai and Samurai </em>are melee-attack based units, they can attack units, buildings or environment next to them.
+  </li><li><em>Ninjas and Oninjas </em>are able to range-attack any units, buildings or environment inside of their range without having to walk next to it.
+  </li><li><em>Geishas and Geishoni </em>can heal other units, so they’re always useful to have around.</li></ul>
+<p class="text-center"><img src="https://img.itch.zone/aW1nLzE5ODM3MjgucG5n/original/VJsOjj.png" loading="lazy"><br></p>
+<h2>Credits</h2>
+<p>
+</p>
+<p><strong><em>Created, Developed &amp; Presented by&nbsp;Whales and Games</em></strong></p>
+<ul><li><a href="https://whalesandgames.itch.io/" target="_blank"><strong>Other&nbsp;<em>Whales and Games</em>&nbsp;Projects</strong></a></li><li><a href="http://whalesandgames.com/" target="_blank" rel="nofollow noopener" referrerpolicy="origin"><strong>Website</strong></a></li><li><a href="https://twitter.com/WhalesAndGames" target="_blank" rel="nofollow noopener" referrerpolicy="origin"><strong>Twitter</strong></a></li><li><a href="https://www.facebook.com/WhalesAndGames/" target="_blank" rel="nofollow noopener" referrerpolicy="origin"><strong>Facebook</strong></a></li><li><a href="https://discord.whalesandgames.com/" target="_blank" rel="nofollow noopener" referrerpolicy="origin"><strong>Discord Server</strong></a></li></ul>
+<p><span style="color: inherit; font-size: inherit"><strong><em>Development Team</em></strong></span></p>
+<ul style="color: inherit; font-size: inherit"><li>Programmer - <strong>JorgeGameDev (<a href="https://twitter.com/JorgeGameDev" target="_blank" rel="nofollow noopener" referrerpolicy="origin">Twitter</a>)</strong></li><li>Graphics Artist - <strong>Moski (<a href="https://twitter.com/MoskiDraws" target="_blank" rel="nofollow noopener" referrerpolicy="origin">Twitter</a>)</strong></li><li>AI Programmer &amp; Audio Composer - <strong>PonchoGuy</strong>&nbsp;<strong>(<a href="https://www.twitch.tv/pwnchoguy" target="_blank" rel="nofollow noopener" referrerpolicy="origin">Twitch</a>)</strong></li><li>Former Programmer - <strong>AlexandrePC113</strong></li></ul>
+<p><strong><em>Special Credits</em></strong></p>
+<ul><li>Universidade Europeia - Project developed and graded for the fourth semester of the Games and Apps Development BSc</li><li>A* Pathfinding Base Tutorials - Sebastian Lague</li><li>Rewired Unity Input Wrapper - Guavaman Enterprises</li><li>Main Fonts - Gary D. Jessey, Font Monkey, Utopia and Sizzleprint</li><li>Extra Scripts - Melang (Unity Forums) and Twik (Unity Forums)</li><li>Assorted Sounds - Looperman.com and Freesoung.org</li></ul>
+<p class="text-center"><img src="https://img.itch.zone/aW1nLzE5ODM3MjgucG5n/original/VJsOjj.png" loading="lazy"><br></p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

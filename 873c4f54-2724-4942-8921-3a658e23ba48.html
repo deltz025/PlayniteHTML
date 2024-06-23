@@ -1,0 +1,311 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>No Longer Home</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> No Longer Home</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="#quicklink-6/22/2024">6/22/2024</a> 16:55:27</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="#quicklink-6/22/2024">6/22/2024</a> 17:56:51</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="#quicklink-8/19/2016">8/19/2016</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="#quicklink-65">65</a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Point-and-click">Point-and-click</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Humble Grove">Humble Grove</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Fellow Traveller">Fellow Traveller</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://store.steampowered.com/app/651490/No_Longer_Home" target="_blank">Steam</a><br/><a href="https://humblegrove.com/" target="_blank">Official</a><br/><a href="https://www.gog.com/game/no_longer_home" target="_blank">GOG</a><br/><a href="https://humblegrove.itch.io/nolongerhome" target="_blank">Itch</a><br/><a href="https://www.epicgames.com/store/en-US/p/no-longer-home" target="_blank">Epic</a><br/><a href="https://twitter.com/humblegrove" target="_blank">Twitter</a><br/><a href="https://www.twitch.tv/directory/game/No%20Longer%20Home" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h1 class="text-center"><img src="https://img.itch.zone/aW1nLzY1MTg2NTQucG5n/original/JjMkOV.png" loading="lazy"></h1>
+<p>Bo and Ao are graduating university and preparing to leave the flat they’ve lived in together for a year. Thanks to visa limitations, Ao is forced to return to Japan, leaving Bo in England. Disillusioned by post-educational life and shoved aside by a government who doesn’t want them there, both are trying to come to terms with their uncertain futures. And deep under their South London flat, something grows...</p>
+<h1><img src="https://img.itch.zone/aW1nLzY1MTg2NjYucG5n/original/urgl51.png" loading="lazy"></h1>
+<figure><img src="https://img.itch.zone/aW1nLzY1MTg2NzUucG5n/original/LuPl0c.png" loading="lazy"></figure>
+<p>Wander through an intimate flat and examine the everyday belongings of Bo and Ao. Have BBQs, play video games, and stay up late just talking in bed. Follow the day to day activities and conversations of two queer, non-binary students and their friends. Get to know Lu, the multi-eyed, animal-like new flatmate.<br><br></p>
+<h1><img src="https://img.itch.zone/aW1nLzY1MTg3NjIuZ2lm/original/jxbtOF.gif" loading="lazy"></h1>
+<p><img src="https://img.itch.zone/aW1nLzY1MTg2ODkucG5n/original/12INwN.png" loading="lazy"><br></p>
+<p>No Longer Home was born when the developers were similarly forced apart after university, and decided to stay in touch by working on a game together. Development duo Hana and Cel chose this project as a way to explore and express the emotions that came with saying goodbye.<br></p>
+<h1 class="text-center"><img src="https://img.itch.zone/aW1nLzY1MTg4MDIuZ2lm/original/EAunCj.gif" loading="lazy"></h1>
+<h1><img src="https://img.itch.zone/aW1nLzY1MTg3NzMucG5n/original/pqB8ZK.png" loading="lazy"></h1>
+<p class="text-center"><img src="https://img.itch.zone/aW1nLzY1MTg4MjguZ2lm/original/w4BUaZ.gif" loading="lazy"></p>
+<figure><img src="https://img.itch.zone/aW1nLzY1MTg3NzQucG5n/original/VzeEKx.png" style="color: inherit; font-size: inherit" loading="lazy"><span></span><br></figure>
+<p class="text-center"><img src="https://img.itch.zone/aW1nLzY1MTg4MTcuZ2lm/original/FIltTL.gif" loading="lazy"><br></p>
+<figure><img src="https://img.itch.zone/aW1nLzY1MTg3NzYucG5n/original/0TmdHy.png" style="color: inherit; font-size: inherit" loading="lazy"><span></span><span></span><br></figure>
+<p class="text-center"><img src="https://img.itch.zone/aW1nLzY1MTg4MjIuZ2lm/original/XuVgLP.gif" loading="lazy"><br></p>
+<p><a target="_blank" rel="nofollow noopener" referrerpolicy="origin"><img src="https://img.itch.zone/aW1nLzY1MTg3OTcucG5n/original/ww9cyC.png" loading="lazy"></a><br></p>
+<p>No Longer Home&nbsp;is made by a core team of: Humble Grove (Hana Lee &amp; Cel Davison), Adrienne Lombardo and Eli Rainsberry. As well as with contributions from&nbsp;Michael Berto, Derek Daley,&nbsp;Florian Veltman, Everest Pipkin and Jacob Gordon.</p>
+<hr>
+<h1 class="text-center"><br>Press:</h1>
+<div><br></div>
+<p>"[No Longer Home]&nbsp;is a reflection on those precarious few months surrounding the end of university, channeled through a point and click aesthetic in the vein of Kentucky Route Zero."</p>
+<p>— <a href="http://waypoint.vice.com/en_us/article/how-29-paints-a-personal-yet-surreal-picture-of-london" target="_blank" style="font-size: inherit" rel="nofollow noopener" referrerpolicy="origin">Vice</a></p>
+<p>"Like memory, everything has a sheen of fiction to it. —&nbsp;[No Longer Home] showcases the magical in the everyday domestic drudgery."</p>
+<p>— <a href="https://www.theguardian.com/technology/2017/jan/10/29-humble-grove-experential-video-game" target="_blank" rel="nofollow noopener" referrerpolicy="origin">The Guardian</a></p>
+<p>"There is something, not an unease but an otherworldliness, that perpetuates the piece-a finely illustrated work that unfolds like a diorama."</p>
+<p>— <a href="http://waypoint.vice.com/en_us/article/how-29-paints-a-personal-yet-surreal-picture-of-london" target="_blank" rel="nofollow noopener" referrerpolicy="origin">Killscreen</a></p>
+<hr>
+<p><br></p>
+<p><br></p>
+<h4><a href="http://www.humblegrove.com/kickstarter" target="_blank" style="text-align: center; font-size: 28px" rel="nofollow noopener" referrerpolicy="origin"><img src="https://img.itch.zone/aW1nLzEzNDQ0MDgucG5n/original/hsLEHp.png" loading="lazy"></a></h4>
+<h4 class="text-center"><a href="http://www.humblegrove.com/kickstarter" target="_blank" style="text-align: center; font-size: 28px" rel="nofollow noopener" referrerpolicy="origin">Successfully funded&nbsp;on Kickstarter!</a></h4>
+<p><br></p>
+<p class="text-center"><br></p>
+<hr>
+<p class="text-center"><em><a href="http://humblegrove.com/" rel="nofollow noopener" referrerpolicy="origin">website</a>&nbsp;|&nbsp;</em><em><a href="https://www.patreon.com/humblegrove" rel="nofollow noopener" referrerpolicy="origin">patreon</a>&nbsp;|&nbsp;</em><em><a href="http://humblegrove.tumblr.com/" rel="nofollow noopener" referrerpolicy="origin">tumblr</a>&nbsp;|&nbsp;</em><em><a href="https://twitter.com/humblegrove" rel="nofollow noopener" referrerpolicy="origin">twitter</a>&nbsp;|&nbsp;</em><em><a href="https://www.facebook.com/humblegrove" rel="nofollow noopener" referrerpolicy="origin">facebook</a></em><br></p>
+<hr>
+<p>
+	<br>
+</p>
+<h3>	Play supplemental prequel vignette <a href="https://humblegrove.itch.io/friary-road" target="_blank">Friary Road</a>:</h3>
+<p>
+	<iframe frameborder="0" src="https://itch.io/embed/276577?linkback=true&amp;border_width=0&amp;bg_color=212627&amp;fg_color=ffffff&amp;link_color=7EED9A&amp;border_color=20282a" width="550" height="165"></iframe>
+</p>
+<h1 class="text-center">⌂</h1>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
